@@ -12,10 +12,10 @@ public class CopMovement : MonoBehaviour
 
     void Update()
     {
-        CopFollowPlayerLinearly();    
+        Move();    
     }
     
-    private void CopFollowPlayerLinearly()
+    private void Move()
     {
         _rigidbody.velocity = new Vector3(0f, _rigidbody.velocity.x, speed);
     }
