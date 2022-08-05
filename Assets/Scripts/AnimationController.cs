@@ -51,21 +51,7 @@ public class AnimationController : MonoBehaviour
             animator.SetBool("isRolling", false);
         }
     }
-
-    public void RightTurnOn()
-    {
-        animator.SetBool("TurnRight", true);
-    }
-
-    public void RightTurnOf()
-    {
-        animator.SetBool("TurnRight", false);
-    }
-    
-    private void LeftTurn()
-    {
-        
-    }
+ 
     
     private void OnCollisionEnter()
     {
