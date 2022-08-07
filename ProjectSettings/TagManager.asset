@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Gate
   - Obstacle
+  - UnderTrigger
+  - OverTrigger
   layers:
   - Default
   - TransparentFX

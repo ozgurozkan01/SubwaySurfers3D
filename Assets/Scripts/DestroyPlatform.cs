@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class DestroyPlatform : MonoBehaviour
@@ -6,12 +8,25 @@ public class DestroyPlatform : MonoBehaviour
 
     [SerializeField] private GameObject[] passedPlatform;
     [HideInInspector] public GameObject[] newPassedPlatform;
+    
+    private bool timeController;
+    private float _timeLimit = 1f;
+    private float _timeCounter;
+
+    private void Update()
+    {
+        TimerForDestroying();
+    }
 
     private void Awake()
     {
         newPassedPlatform = new GameObject[3];
     }
 
+    public void DestroyPlatformFunctionsCollection()
+    {
+        timeController = true;
+    }
     public void UpdatePassedPlatform()
     {
         for (int i = 0; i < newPassedPlatform.Length; i++)
@@ -28,9 +43,18 @@ public class DestroyPlatform : MonoBehaviour
         }
     }
 
-    public IEnumerator DestroyPlatformAfterDisapearing()
+    private void TimerForDestroying()
     {
-        yield return new WaitForSeconds(0.3f);
-        DestroyPassedPlatform();
+        if (timeController)
+        {
+            if (_timeCounter >= _timeLimit)
+            {
+                UpdatePassedPlatform();
+                DestroyPassedPlatform();
+                _timeCounter = 0f;
+                timeController = false;
+            }
+            _timeCounter += Time.deltaTime;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,20 +13,25 @@ public class CreateNewObstacles : MonoBehaviour
     [SerializeField] private int[] obstacleTypeList = new int[3]; // ( 0-> NoPass, 1-> UnderPass, 2-> OverPass)
     [SerializeField] private CopMovement copMovement;
     [SerializeField] private DestroyPlatform destroyPlatform;
+    private GameObject[] _platformHolder;
 
-
+    
     private int _obstacleIndex;
     private int _obstacleType;
     private int _passControl;
-    private bool _triggerController = true;
     
-    private void OnTriggerEnter(Collider collision)
+    private bool _triggerController = true;
+
+    void Awake()
+    {
+        _platformHolder = new GameObject[3];
+    }
+
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.CompareTag("Gate") && _triggerController)
         {
-            StartCoroutine(destroyPlatform.DestroyPlatformAfterDisapearing());
-            DetermineTheObstacleType(obstacleTypeList);
-            destroyPlatform.UpdatePassedPlatform();
+            PlatformFunctionCollection();
             _triggerController = false;
         }
         StartCoroutine(TriggerController());
@@ -40,6 +46,12 @@ public class CreateNewObstacles : MonoBehaviour
         }
     }
 
+    private void PlatformFunctionCollection()
+    {
+        DetermineTheObstacleType(obstacleTypeList);
+        destroyPlatform.DestroyPlatformFunctionsCollection();
+    }
+    
     private void DetermineTheObstacleType(int[] objectList)
     {
         for (int i = 0; i < objectList.Length; i++)
@@ -54,7 +66,6 @@ public class CreateNewObstacles : MonoBehaviour
     {
         for (int i = 0; i < obstacleList.Length; i++)
         {
-            Debug.Log(obstacleList.Length);
             if (obstacleList[i] == 1 || obstacleList[i] == 2)
             {
                 _passControl = 1;
@@ -63,7 +74,6 @@ public class CreateNewObstacles : MonoBehaviour
 
         if (_passControl == 0)
         {
-            Debug.Log("Something Wrong!");
             _obstacleIndex = Random.Range(0, 3);
             _obstacleType = Random.Range(1, 3);
             obstacleList[_obstacleIndex] = _obstacleType;
@@ -84,8 +94,9 @@ public class CreateNewObstacles : MonoBehaviour
                     lastObstacles[i].transform.position + new Vector3(0f, 0f, 20f),
                     Quaternion.identity);
                 
+                _platformHolder[i] = lastObstacles[i];
                 lastObstacles[i] = newObstacle;
-                destroyPlatform.newPassedPlatform[i] = lastObstacles[i];
+                destroyPlatform.newPassedPlatform[i] = _platformHolder[i];
             }
             
             else if (obstacleList[i] == 1)
@@ -95,8 +106,9 @@ public class CreateNewObstacles : MonoBehaviour
                     lastObstacles[i].transform.position + new Vector3(0f, 0f, 20f), 
                     Quaternion.identity);
                 
+                _platformHolder[i] = lastObstacles[i];
                 lastObstacles[i] = newObstacle;
-                destroyPlatform.newPassedPlatform[i] = lastObstacles[i];
+                destroyPlatform.newPassedPlatform[i] = _platformHolder[i];
             }
             
             else if (obstacleList[i] == 2)
@@ -105,12 +117,14 @@ public class CreateNewObstacles : MonoBehaviour
                     obstacleOverPassPrefab, 
                     lastObstacles[i].transform.position + new Vector3(0f, 0f, 20f), 
                     Quaternion.identity);
+
+                _platformHolder[i] = lastObstacles[i];
                 lastObstacles[i] = newObstacle;
-                destroyPlatform.newPassedPlatform[i] = lastObstacles[i];
+                destroyPlatform.newPassedPlatform[i] = _platformHolder[i];
             }
         }
     }
-
+    
     IEnumerator TriggerController()
     {
         yield return new WaitForSeconds(1f);
@@ -120,8 +134,8 @@ public class CreateNewObstacles : MonoBehaviour
     IEnumerator CollisionController()
     {
         yield return new WaitForSeconds(5f);
-        copMovement.speed = 3f;
-        yield return new WaitForSeconds(2f);
+        copMovement.speed = 5f;
+        yield return new WaitForSeconds(1.5f);
         copMovement.speed = 7f;
     }
 }

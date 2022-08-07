@@ -7,15 +7,10 @@ public class PlayerAnimationController : MonoBehaviour
     private bool isGrounded;
     void Update()
     {
-        AnimationControl();       
-    }
-
-    private void AnimationControl()
-    {
         RunningAnimation();
         JumpingAnimation();
         RollingAnimation();
-        StumbleTheObstacles();
+        StumbleTheObstacles();  
     }
 
     private void RunningAnimation()

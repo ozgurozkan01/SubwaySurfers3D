@@ -1,10 +1,10 @@
 ﻿using System.Collections;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class CopMovement : MonoBehaviour
 {
     private Rigidbody _rigidbody;
+    [SerializeField] private float _jumpForce;
     public float speed;
     
     private bool _copGoLeft;
@@ -12,21 +12,26 @@ public class CopMovement : MonoBehaviour
     private bool _copGoMiddleFromRight;
     private bool _copGoMiddleFromLeft;
 
+    [HideInInspector] public bool jumpingController;
+    [HideInInspector] public bool rollingController;
+    
     [HideInInspector] public bool pressAtoMiddle;
     [HideInInspector] public bool pressAtoLeft;
     [HideInInspector] public bool pressDtoMiddle;
     [HideInInspector] public bool pressDtoRight;
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private CopRotation copRotation;
     
     private string _line = "Middle";
     private int _lineNumber = 2;
 
     private bool _timerActive;
-    private float _timeLimit = 0.3f;
+    private float _timeLimit = 0.2f;
     private float _timeCounter;
     
     private float _speedForDirection;
     private float _speedX;
+    private float _copRotationHolder;
 
     void Start()
     {
@@ -44,10 +49,28 @@ public class CopMovement : MonoBehaviour
         ChangeTheLine();
         CheckLineCoordinate();
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("UnderTrigger"))
+        {
+            rollingController = true;
+        }
+        
+        else if (other.gameObject.CompareTag("OverTrigger"))
+        {
+            jumpingController = true;
+        }
+    }
+
     private void Move()
     {
         _rigidbody.velocity = new Vector3(_speedX, _rigidbody.velocity.y, speed);
+    }
+
+    public void Jump()
+    {
+        _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _jumpForce, _rigidbody.velocity.z);
     }
     
     public void ChangeTheLine()
@@ -103,9 +126,11 @@ public class CopMovement : MonoBehaviour
         {
             _timerActive = true;
             _speedForDirection = -8f;
+            _copRotationHolder = -60f;
             if (transform.position.x <= -3.4f)
             {
                 _speedX = 0f;
+                copRotation.rotationAngle = 0f;
                 _timeCounter = 0f;
                 _timerActive = false;
                 _copGoLeft = false;
@@ -116,9 +141,11 @@ public class CopMovement : MonoBehaviour
         {
             _timerActive = true;
             _speedForDirection = 8f;
+            _copRotationHolder = 60f;
             if (transform.position.x >= 3.4f)
             {
                 _speedX = 0f;
+                copRotation.rotationAngle = 0f;
                 _timeCounter = 0f;
                 _timerActive = false;
                 _copGoRight = false;
@@ -129,9 +156,11 @@ public class CopMovement : MonoBehaviour
         {
             _timerActive = true;
             _speedForDirection = 8f;
+            _copRotationHolder = 60f;
             if (transform.position.x >= -.1f)
             {
                 _speedX = 0f;
+                copRotation.rotationAngle = 0f;
                 _timeCounter = 0f;
                 _timerActive = false;
                 _copGoMiddleFromLeft = false;
@@ -142,9 +171,11 @@ public class CopMovement : MonoBehaviour
         {
             _timerActive = true;
             _speedForDirection = -8f;
+            _copRotationHolder = -60f;
             if (transform.position.x <= .1f)
             {
                 _speedX = 0f;
+                copRotation.rotationAngle = 0f;
                 _timeCounter = 0f;
                 _timerActive = false;
                 _copGoMiddleFromRight = false;
@@ -158,6 +189,7 @@ public class CopMovement : MonoBehaviour
         {
             if (_timeCounter >= _timeLimit)
             {
+                copRotation.rotationAngle = _copRotationHolder;
                 _speedX = _speedForDirection;
             }
             _timeCounter += Time.deltaTime;
@@ -166,7 +198,7 @@ public class CopMovement : MonoBehaviour
 
     public void CatchThePlayer()
     {
-        gameObject.transform.position = playerMovement.gameObject.transform.position + new Vector3(0f, 0f, -2f);
+        gameObject.transform.position = playerMovement.gameObject.transform.position + new Vector3(0f, 0f, -2.25f);
         StartCoroutine(MovingAwayFromPlayer());
     }
 
@@ -177,5 +209,4 @@ public class CopMovement : MonoBehaviour
         yield return new WaitForSeconds(1f);
         speed = 7f;
     }
-    
 }

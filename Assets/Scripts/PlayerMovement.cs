@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
     [SerializeField] private CopMovement copMovement;
+    [SerializeField] private PlayerRotation playerRotation;
     private Rigidbody _rigidBody;
 
     public bool isGrounded;
@@ -53,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A) && _line == "Middle" && _lineNumber != 1)
         {
+            playerRotation.rotationAngle = -60f;
             _goLeft = true;
             _goRight = false;
             _goMiddleFromRight = false;
@@ -64,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         
         else if (Input.GetKeyDown(KeyCode.A) && _line == "Right" && _lineNumber != 2)
         {
+            playerRotation.rotationAngle = -60f;
             _goMiddleFromRight = true;
             _goMiddleFromLeft = false;
             _goLeft = false;
@@ -75,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
         
         else if (Input.GetKeyDown(KeyCode.D) && _line == "Left" && _lineNumber != 2)
         {
+            playerRotation.rotationAngle = 60f;
             _goMiddleFromLeft = true;
             _goLeft = false;
             _goRight = false;
@@ -86,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
         
         else if (Input.GetKeyDown(KeyCode.D) && _line == "Middle" && _lineNumber != 3)
         {
+            playerRotation.rotationAngle = 60f;
             _goRight = true;
             _goLeft = false;
             _goMiddleFromRight = false;
@@ -103,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
             speedX = -8f;
             if (transform.position.x <= -3.4f)
             {
+                playerRotation.rotationAngle = 0f;
                 speedX = 0f;
                 _goLeft = false;
             }
@@ -113,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
             speedX = 8f;
             if (transform.position.x >= 3.4f)
             {
+                playerRotation.rotationAngle = 0f;
                 speedX = 0f;
                 _goRight = false;
             }
@@ -123,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
             speedX = 8f;
             if (transform.position.x >= -.1f)
             {
+                playerRotation.rotationAngle = 0f;
                 speedX = 0f;
                 _goMiddleFromLeft = false;
             }
@@ -133,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
             speedX = -8f;
             if (transform.position.x <= .1f)
             {
+                playerRotation.rotationAngle = 0f;
                 speedX = 0f;
                 _goMiddleFromRight = false;
             }
