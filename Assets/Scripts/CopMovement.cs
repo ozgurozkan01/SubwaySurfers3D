@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEditor.Animations;
+using UnityEngine;
 
 public class CopMovement : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class CopMovement : MonoBehaviour
     [HideInInspector] public bool pressAtoLeft;
     [HideInInspector] public bool pressDtoMiddle;
     [HideInInspector] public bool pressDtoRight;
+    [SerializeField] private PlayerMovement playerMovement;
     
     private string _line = "Middle";
     private int _lineNumber = 2;
@@ -160,4 +163,19 @@ public class CopMovement : MonoBehaviour
             _timeCounter += Time.deltaTime;
         }
     }
+
+    public void CatchThePlayer()
+    {
+        gameObject.transform.position = playerMovement.gameObject.transform.position + new Vector3(0f, 0f, -2f);
+        StartCoroutine(MovingAwayFromPlayer());
+    }
+
+    IEnumerator MovingAwayFromPlayer()
+    {
+        yield return new WaitForSeconds(5f);
+        speed = 5f;
+        yield return new WaitForSeconds(1f);
+        speed = 7f;
+    }
+    
 }

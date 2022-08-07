@@ -9,16 +9,23 @@ public class CreateNewObstacles : MonoBehaviour
     [SerializeField] private GameObject obstacleUnderPassPrefab;
     [SerializeField] private GameObject obstacleNoPassPrefab;
     [SerializeField] private GameObject[] lastObstacles;
-    [SerializeField] private int[] obstacleTypeList = {0, 0, 0}; // ( 0-> NoPass, 1-> UnderPass, 2-> OverPass)
+    [SerializeField] private int[] obstacleTypeList = new int[3]; // ( 0-> NoPass, 1-> UnderPass, 2-> OverPass)
     [SerializeField] private CopMovement copMovement;
-    
+    [SerializeField] private DestroyPlatform destroyPlatform;
+
+
+    private int _obstacleIndex;
+    private int _obstacleType;
     private int _passControl;
     private bool _triggerController = true;
+    
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Gate") && _triggerController)
         {
+            StartCoroutine(destroyPlatform.DestroyPlatformAfterDisapearing());
             DetermineTheObstacleType(obstacleTypeList);
+            destroyPlatform.UpdatePassedPlatform();
             _triggerController = false;
         }
         StartCoroutine(TriggerController());
@@ -28,7 +35,7 @@ public class CreateNewObstacles : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            copMovement.transform.position = gameObject.transform.position + new Vector3(0f, 0f, -4f);
+            copMovement.CatchThePlayer();
             StartCoroutine(CollisionController());
         }
     }
@@ -47,6 +54,7 @@ public class CreateNewObstacles : MonoBehaviour
     {
         for (int i = 0; i < obstacleList.Length; i++)
         {
+            Debug.Log(obstacleList.Length);
             if (obstacleList[i] == 1 || obstacleList[i] == 2)
             {
                 _passControl = 1;
@@ -56,9 +64,12 @@ public class CreateNewObstacles : MonoBehaviour
         if (_passControl == 0)
         {
             Debug.Log("Something Wrong!");
-            obstacleList[0] = 1;
+            _obstacleIndex = Random.Range(0, 3);
+            _obstacleType = Random.Range(1, 3);
+            obstacleList[_obstacleIndex] = _obstacleType;
         }
-        
+
+        _passControl = 0;
         AttachTheObstacles(obstacleList);
     }
     
@@ -72,7 +83,9 @@ public class CreateNewObstacles : MonoBehaviour
                     obstacleNoPassPrefab, 
                     lastObstacles[i].transform.position + new Vector3(0f, 0f, 20f),
                     Quaternion.identity);
+                
                 lastObstacles[i] = newObstacle;
+                destroyPlatform.newPassedPlatform[i] = lastObstacles[i];
             }
             
             else if (obstacleList[i] == 1)
@@ -81,7 +94,9 @@ public class CreateNewObstacles : MonoBehaviour
                     obstacleUnderPassPrefab, 
                     lastObstacles[i].transform.position + new Vector3(0f, 0f, 20f), 
                     Quaternion.identity);
+                
                 lastObstacles[i] = newObstacle;
+                destroyPlatform.newPassedPlatform[i] = lastObstacles[i];
             }
             
             else if (obstacleList[i] == 2)
@@ -91,7 +106,8 @@ public class CreateNewObstacles : MonoBehaviour
                     lastObstacles[i].transform.position + new Vector3(0f, 0f, 20f), 
                     Quaternion.identity);
                 lastObstacles[i] = newObstacle;
-            }   
+                destroyPlatform.newPassedPlatform[i] = lastObstacles[i];
+            }
         }
     }
 
