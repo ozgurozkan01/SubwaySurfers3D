@@ -19,7 +19,6 @@ public class CopMovement : MonoBehaviour
     [HideInInspector] public bool pressAtoLeft;
     [HideInInspector] public bool pressDtoMiddle;
     [HideInInspector] public bool pressDtoRight;
-    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private CopRotation copRotation;
     
     private string _line = "Middle";
@@ -194,19 +193,5 @@ public class CopMovement : MonoBehaviour
             }
             _timeCounter += Time.deltaTime;
         }
-    }
-
-    public void CatchThePlayer()
-    {
-        gameObject.transform.position = playerMovement.gameObject.transform.position + new Vector3(0f, 0f, -2.25f);
-        StartCoroutine(MovingAwayFromPlayer());
-    }
-
-    IEnumerator MovingAwayFromPlayer()
-    {
-        yield return new WaitForSeconds(5f);
-        speed = 5f;
-        yield return new WaitForSeconds(1f);
-        speed = 7f;
     }
 }

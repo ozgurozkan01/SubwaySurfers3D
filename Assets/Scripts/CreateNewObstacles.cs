@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,10 +11,11 @@ public class CreateNewObstacles : MonoBehaviour
     [SerializeField] private GameObject[] lastObstacles;
     [SerializeField] private int[] obstacleTypeList = new int[3]; // ( 0-> NoPass, 1-> UnderPass, 2-> OverPass)
     [SerializeField] private CopMovement copMovement;
+    [SerializeField] private CopPositionController copPositionController;
     [SerializeField] private DestroyPlatform destroyPlatform;
-    private GameObject[] _platformHolder;
-
+    [SerializeField] private CoinClonerController coinClonerController;
     
+    private GameObject[] _platformHolder;
     private int _obstacleIndex;
     private int _obstacleType;
     private int _passControl;
@@ -31,7 +31,8 @@ public class CreateNewObstacles : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Gate") && _triggerController)
         {
-            PlatformFunctionCollection();
+            DetermineTheObstacleType(obstacleTypeList);
+            destroyPlatform.DestroyPlatformFunctionsCollection();      
             _triggerController = false;
         }
         StartCoroutine(TriggerController());
@@ -41,15 +42,9 @@ public class CreateNewObstacles : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            copMovement.CatchThePlayer();
+            copPositionController.CatchThePlayer();
             StartCoroutine(CollisionController());
         }
-    }
-
-    private void PlatformFunctionCollection()
-    {
-        DetermineTheObstacleType(obstacleTypeList);
-        destroyPlatform.DestroyPlatformFunctionsCollection();
     }
     
     private void DetermineTheObstacleType(int[] objectList)
@@ -71,7 +66,7 @@ public class CreateNewObstacles : MonoBehaviour
                 _passControl = 1;
             }
         }
-
+        
         if (_passControl == 0)
         {
             _obstacleIndex = Random.Range(0, 3);
@@ -97,6 +92,8 @@ public class CreateNewObstacles : MonoBehaviour
                 _platformHolder[i] = lastObstacles[i];
                 lastObstacles[i] = newObstacle;
                 destroyPlatform.newPassedPlatform[i] = _platformHolder[i];
+                coinClonerController.obstaclesPositionX[i] = 0;
+                coinClonerController.obstaclesPositionZ[i] = 0;
             }
             
             else if (obstacleList[i] == 1)
@@ -109,6 +106,8 @@ public class CreateNewObstacles : MonoBehaviour
                 _platformHolder[i] = lastObstacles[i];
                 lastObstacles[i] = newObstacle;
                 destroyPlatform.newPassedPlatform[i] = _platformHolder[i];
+                coinClonerController.obstaclesPositionX[i] = lastObstacles[i].transform.position.x;
+                coinClonerController.obstaclesPositionZ[i] = lastObstacles[i].transform.position.z;
             }
             
             else if (obstacleList[i] == 2)
@@ -121,13 +120,16 @@ public class CreateNewObstacles : MonoBehaviour
                 _platformHolder[i] = lastObstacles[i];
                 lastObstacles[i] = newObstacle;
                 destroyPlatform.newPassedPlatform[i] = _platformHolder[i];
+                coinClonerController.obstaclesPositionX[i] = lastObstacles[i].transform.position.x;
+                coinClonerController.obstaclesPositionZ[i] = lastObstacles[i].transform.position.z;
             }
-        }
+        }            
+        coinClonerController.CloneCoin();
     }
     
     IEnumerator TriggerController()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         _triggerController = true;
     }
 
