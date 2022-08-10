@@ -8,6 +8,11 @@ TagManager:
   - Obstacle
   - UnderTrigger
   - OverTrigger
+  - Coin
+  - Ground
+  - NoPass
+  - Bones
+  - Foot
   layers:
   - Default
   - TransparentFX
@@ -19,13 +24,13 @@ TagManager:
   - 
   - Ground
   - Limbs
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Bones
+  - Player
+  - Coin
+  - Gate
+  - NoPass
+  - Foot
+  - Obstacle
   - 
   - 
   - 

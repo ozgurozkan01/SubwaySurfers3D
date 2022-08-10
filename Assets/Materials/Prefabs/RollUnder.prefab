@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7812158085672468466}
   - component: {fileID: 6337356330601297229}
   - component: {fileID: 67630950107622688}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Collision
   m_TagString: Gate
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 5566198786516610574}
   - component: {fileID: 5566198786516610575}
   - component: {fileID: 5566198786516610568}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (2)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

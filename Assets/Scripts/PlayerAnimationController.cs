@@ -4,13 +4,14 @@ public class PlayerAnimationController : MonoBehaviour
 {
     public Animator animator;
     [SerializeField] private PlayerStumble playerStumble;
+    [SerializeField] private GameEndController gameEnd;
     private bool isGrounded;
     void Update()
     {
         RunningAnimation();
         JumpingAnimation();
         RollingAnimation();
-        StumbleTheObstacles();  
+        StumblingAnimation();
     }
 
     private void RunningAnimation()
@@ -48,11 +49,12 @@ public class PlayerAnimationController : MonoBehaviour
         }
     }
 
-    private void StumbleTheObstacles()
+    private void StumblingAnimation()
     {
         if (playerStumble.isStumbling)
         {
             animator.SetBool("isStumbling", true);
+            gameEnd._stumbleNumber += 1;
         }
         
         else if (!playerStumble.isStumbling)
@@ -60,7 +62,11 @@ public class PlayerAnimationController : MonoBehaviour
             animator.SetBool("isStumbling", false);
         }
     }
-    
+
+    public void FallingAnimation()
+    {
+         animator.SetBool("isFalling", true);
+    }
     
     private void OnCollisionEnter()
     {

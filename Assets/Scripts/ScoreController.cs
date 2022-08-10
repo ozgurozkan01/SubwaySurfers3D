@@ -1,25 +1,21 @@
-﻿using System;
-using UnityEngine;
-
+﻿using UnityEngine;
+using UnityEngine.UI;
 public class ScoreController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Text scoreText;
+    private int _score;
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Coin"))
+        if (other.gameObject.CompareTag("Coin"))
         {
-            
+            Destroy(other.gameObject);
+            IncreaseScore();    
         }
+    }
+
+    private void IncreaseScore()
+    {
+        _score += 1;
+        scoreText.text = "" + _score;
     }
 }

@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\CopRotation.cs" />
      <Compile Include="Assets\Scripts\CreateNewObstacles.cs" />
      <Compile Include="Assets\Scripts\DestroyPlatform.cs" />
+     <Compile Include="Assets\Scripts\GameEndController.cs" />
      <Compile Include="Assets\Scripts\PlayerAnimationController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerRotation.cs" />

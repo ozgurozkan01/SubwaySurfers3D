@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CreateNewObstacles : MonoBehaviour
@@ -10,8 +9,6 @@ public class CreateNewObstacles : MonoBehaviour
     [SerializeField] private GameObject obstacleNoPassPrefab;
     [SerializeField] private GameObject[] lastObstacles;
     [SerializeField] private int[] obstacleTypeList = new int[3]; // ( 0-> NoPass, 1-> UnderPass, 2-> OverPass)
-    [SerializeField] private CopMovement copMovement;
-    [SerializeField] private CopPositionController copPositionController;
     [SerializeField] private DestroyPlatform destroyPlatform;
     [SerializeField] private CoinClonerController coinClonerController;
     
@@ -32,18 +29,7 @@ public class CreateNewObstacles : MonoBehaviour
         if (collision.gameObject.CompareTag("Gate") && _triggerController)
         {
             DetermineTheObstacleType(obstacleTypeList);
-            destroyPlatform.DestroyPlatformFunctionsCollection();      
-            _triggerController = false;
-        }
-        StartCoroutine(TriggerController());
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            copPositionController.CatchThePlayer();
-            StartCoroutine(CollisionController());
+            destroyPlatform.DestroyPlatformFunctionsCollection();
         }
     }
     
@@ -123,21 +109,7 @@ public class CreateNewObstacles : MonoBehaviour
                 coinClonerController.obstaclesPositionX[i] = lastObstacles[i].transform.position.x;
                 coinClonerController.obstaclesPositionZ[i] = lastObstacles[i].transform.position.z;
             }
-        }            
+        }
         coinClonerController.CloneCoin();
-    }
-    
-    IEnumerator TriggerController()
-    {
-        yield return new WaitForSeconds(1.5f);
-        _triggerController = true;
-    }
-
-    IEnumerator CollisionController()
-    {
-        yield return new WaitForSeconds(5f);
-        copMovement.speed = 5f;
-        yield return new WaitForSeconds(1.5f);
-        copMovement.speed = 7f;
     }
 }

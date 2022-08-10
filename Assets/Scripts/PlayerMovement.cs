@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    public float speed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float diveForce;
     [SerializeField] private CopMovement copMovement;
     [SerializeField] private PlayerRotation playerRotation;
     private Rigidbody _rigidBody;
 
+    private bool isJumping;
     public bool isGrounded;
     
     private bool _goLeft;
@@ -37,6 +39,10 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
+        if (!isGrounded && isJumping && Input.GetKey(KeyCode.S))
+        {
+            DiveThroughDownward();
+        }
     }
 
     private void Move()
@@ -46,8 +52,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        _rigidBody.velocity = new Vector3(0f, jumpForce, _rigidBody.velocity.z);
+        _rigidBody.velocity = new Vector3(_rigidBody.velocity.x, jumpForce, _rigidBody.velocity.z);
+        isJumping = true;
         isGrounded = false;
+    }
+
+    private void DiveThroughDownward()
+    {
+        _rigidBody.velocity = new Vector3(_rigidBody.velocity.x, diveForce, _rigidBody.velocity.z);
     }
     
     private void ChangeTheLine()
@@ -147,10 +159,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
-    private void OnCollisionEnter()
+    
+    private void OnCollisionEnter(Collision collision)
     {
-        isGrounded = true;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true; 
+        }
     }
 
 }
