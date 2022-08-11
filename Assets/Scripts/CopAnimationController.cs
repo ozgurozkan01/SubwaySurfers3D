@@ -45,4 +45,9 @@ public class CopAnimationController : MonoBehaviour
             animator.SetBool("isRolling", false);
         }
     }
+
+    public void CopGuardingAnimation()
+    {
+        animator.SetBool("isStopping", true);
+    }
 }

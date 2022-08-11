@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25994965963605619}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.176, z: 0.017250061}
+  m_LocalPosition: {x: 0, y: 2.35, z: 0.017250061}
   m_LocalScale: {x: 1.75, y: 1.5078353, z: 0.4129806}
   m_Children: []
   m_Father: {fileID: 9140574664517239039}
@@ -91,8 +91,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.0000002}
-  m_Center: {x: 0.000000014901161, y: 0, z: 0.0000019073489}
+  m_Size: {x: 0.9999994, y: 1.5340894, z: 1.0000001}
+  m_Center: {x: 0, y: 0.26704502, z: 0.000001918181}
 --- !u!1 &135992983027406199
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 5735629624050522645}
   - component: {fileID: 5735629624050522646}
   - component: {fileID: 5735629624050522647}
-  m_Layer: 16
+  m_Layer: 15
   m_Name: Cube
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

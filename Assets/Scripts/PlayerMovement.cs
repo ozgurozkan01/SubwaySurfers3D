@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerRotation playerRotation;
     private Rigidbody _rigidBody;
 
-    private bool isJumping;
     public bool isGrounded;
+    private bool isJumping;
     
     private bool _goLeft;
     private bool _goRight;

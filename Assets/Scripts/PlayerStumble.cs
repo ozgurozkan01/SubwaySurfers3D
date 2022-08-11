@@ -3,37 +3,34 @@ using UnityEngine;
 
 public class PlayerStumble : MonoBehaviour
 {
-    [HideInInspector] public bool isStumbling;
-    [SerializeField] private GameEndController gameEnd;
+    public bool isStumbling;
     [SerializeField] private CopPositionController copPositionController;
     [SerializeField] private CopMovement copMovement;
-
-
-    private int collisionNumber;
+    [SerializeField] private GameEndController gameEnd;
+    
+    public int collisionNumber;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             collisionNumber++;
+            collision.gameObject.GetComponent<Collider>().enabled = false;
             isStumbling = true;
             copPositionController.CatchThePlayer();
-            StartCoroutine(CollisionController());
         }
-        StartCoroutine(StumblingControl());
-        Debug.Log(collisionNumber);
-    }
 
-    IEnumerator StumblingControl()
-    {
-        yield return new WaitForSeconds(0.2f);
-        isStumbling = false;
+        if (!gameEnd.gameEndControl)
+        {
+            StartCoroutine(FallDownController());
+        }
     }
     
-    IEnumerator CollisionController()
+    IEnumerator FallDownController()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10);
         copMovement.speed = 5f;
-        yield return new WaitForSeconds(1.5f);
-        copMovement.speed = 7f;
+        yield return new WaitForSeconds(2f);
+        copMovement.speed = 8f;
+        collisionNumber = 0;
     }
 }

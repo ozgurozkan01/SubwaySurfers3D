@@ -2,33 +2,37 @@
 
 public class GameEndController : MonoBehaviour
 {
-    [HideInInspector] public int _stumbleNumber;
+    [SerializeField] private PlayerStumble playerStumble;
     [SerializeField] private CopMovement copMovement;
-    [SerializeField] private PlayerMovement playerMovement; 
-    [SerializeField] private PlayerAnimationController playerAnimation;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerAnimationController playerAnimCont;
+    [SerializeField] private CopAnimationController copAnimCont;
+
+    [HideInInspector] public bool gameEndControl;
     void Update()
     {
-        GameEnd();
+        CheckGameEnded();
+        GameEnded();
     }
 
-    void GameEnd()
+    private void CheckGameEnded()
     {
-        if (_stumbleNumber == 2)
+        if (playerStumble.collisionNumber >= 2)
         {
-            Debug.Log("Game ENDED");
-            copMovement.speed = 0f;
-            playerMovement.speed = 0f;
-            playerAnimation.FallingAnimation();
+            gameEndControl = true;
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
+    
+    void GameEnded()
     {
-        if (collision.gameObject.CompareTag("NoPass"))
+        if (gameEndControl)
         {
             playerMovement.speed = 0f;
             copMovement.speed = 0f;
-            playerAnimation.FallingAnimation();
+            copMovement.gameObject.transform.position =
+                playerMovement.gameObject.transform.position + new Vector3(0f, 0f, -1f);
+            playerAnimCont.FallingAnimation();
+            copAnimCont.CopGuardingAnimation();
         }
     }
 }

@@ -54,7 +54,7 @@ public class PlayerAnimationController : MonoBehaviour
         if (playerStumble.isStumbling)
         {
             animator.SetBool("isStumbling", true);
-            gameEnd._stumbleNumber += 1;
+            playerStumble.isStumbling = false;
         }
         
         else if (!playerStumble.isStumbling)
@@ -65,7 +65,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void FallingAnimation()
     {
-         animator.SetBool("isFalling", true);
+        animator.SetBool("isFalling", true);
     }
     
     private void OnCollisionEnter()
