@@ -29,7 +29,7 @@ public class CreateNewObstacles : MonoBehaviour
         if (collision.gameObject.CompareTag("Gate") && _triggerController)
         {
             DetermineTheObstacleType(obstacleTypeList);
-            destroyPlatform.DestroyPlatformFunctionsCollection();
+            destroyPlatform.timeController = true;
         }
     }
     

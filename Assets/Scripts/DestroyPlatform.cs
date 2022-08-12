@@ -7,7 +7,7 @@ public class DestroyPlatform : MonoBehaviour
     [SerializeField] private GameObject[] passedPlatform;
     [HideInInspector] public GameObject[] newPassedPlatform;
     
-    private bool _timeController;
+    [HideInInspector] public bool timeController;
     private float _timeLimit = 1f;
     private float _timeCounter;
 
@@ -21,10 +21,6 @@ public class DestroyPlatform : MonoBehaviour
         newPassedPlatform = new GameObject[3];
     }
 
-    public void DestroyPlatformFunctionsCollection()
-    {
-        _timeController = true;
-    }
     public void UpdatePassedPlatform()
     {
         for (int i = 0; i < newPassedPlatform.Length; i++)
@@ -43,14 +39,14 @@ public class DestroyPlatform : MonoBehaviour
 
     private void TimerForDestroying()
     {
-        if (_timeController)
+        if (timeController)
         {
             if (_timeCounter >= _timeLimit)
             {
                 UpdatePassedPlatform();
                 DestroyPassedPlatform();
                 _timeCounter = 0f;
-                _timeController = false;
+                timeController = false;
             }
             _timeCounter += Time.deltaTime;
         }

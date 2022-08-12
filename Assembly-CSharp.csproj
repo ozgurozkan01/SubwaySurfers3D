@@ -50,6 +50,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Materials\Ragdoll\RagdollActivate.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CoinClonerController.cs" />
      <Compile Include="Assets\Scripts\CoinRotationController.cs" />
@@ -66,7 +67,10 @@
      <Compile Include="Assets\Scripts\PlayerStumble.cs" />
      <Compile Include="Assets\Scripts\ScoreController.cs" />
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+     <Compile Include="Assets\Scripts\TrainMovement.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+     <None Include="Assets\SubwayTrain\Shader\Model Shader DX9.shader" />
+     <None Include="Assets\SubwayTrain\Shader\Model Shader DX11.shader" />
  <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
  <HintPath>C:/Users/ozgur/Documents/GitHub/SubwaySurfers3D/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
  </Reference>

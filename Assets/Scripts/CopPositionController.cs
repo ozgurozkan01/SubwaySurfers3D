@@ -5,6 +5,7 @@ public class CopPositionController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private CopMovement copMovement;
     [SerializeField] private float lerpMultiplier;
+    [SerializeField] private GameEndController gameEnd;
 
     public void CatchThePlayer()
     {
@@ -12,15 +13,18 @@ public class CopPositionController : MonoBehaviour
             gameObject.transform.position,
             player.gameObject.transform.position + new Vector3(0f, 0f, -2.25f),
             lerpMultiplier);
-        
-        StartCoroutine(MovingAwayFromPlayer());
+
+        if (!gameEnd.gameEndControl)
+        {
+            StartCoroutine(MovingAwayFromPlayer());
+        }
     }
     
     IEnumerator MovingAwayFromPlayer()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         copMovement.speed = 5f;
-        yield return new WaitForSeconds(1f);
-        copMovement.speed = 7f;
+        yield return new WaitForSeconds(2f);
+        copMovement.speed = 8f;
     }
 }
