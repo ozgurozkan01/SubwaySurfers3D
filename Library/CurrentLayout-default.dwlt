@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 939
-  m_MinSize: {x: 881, y: 492}
-  m_MaxSize: {x: 16006, y: 14042}
+  m_MinSize: {x: 880, y: 492}
+  m_MaxSize: {x: 16005, y: 14042}
   vertical: 0
-  controlID: 153
+  controlID: 66
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -210,10 +210,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 201
     y: 0
-    width: 586
+    width: 579
     height: 663
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -236,12 +236,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 787
+    x: 780
     y: 0
-    width: 526
+    width: 533
     height: 663
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -293,8 +293,8 @@ MonoBehaviour:
     y: 0
     width: 607
     height: 939
-  m_MinSize: {x: 276, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -381,10 +381,10 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 595246f11afcd4f4fb39881fe0e8d7a7,
+  m_AnimatorController: {fileID: 9100000, guid: 677c1a2d2fe768a4fb4ed0ff8e73716c,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 9213686468360569950, guid: 595246f11afcd4f4fb39881fe0e8d7a7,
+  - m_Target: {fileID: 384080959061764368, guid: 677c1a2d2fe768a4fb4ed0ff8e73716c,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -419,9 +419,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 787
+    x: 780
     y: 73
-    width: 524
+    width: 531
     height: 642
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_ShowGizmos: 1
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 524, y: 419}
+  m_TargetSize: {x: 531, y: 425}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -447,10 +447,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -262
-    m_HBaseRangeMax: 262
-    m_VBaseRangeMin: -209.5
-    m_VBaseRangeMax: 209.5
+    m_HBaseRangeMin: -265.5
+    m_HBaseRangeMax: 265.5
+    m_VBaseRangeMin: -212.5
+    m_VBaseRangeMax: 212.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -468,23 +468,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 524
+      width: 531
       height: 621
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 262, y: 310.5}
+    m_Translation: {x: 265.5, y: 310.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -262
+      x: -265.5
       y: -310.5
-      width: 524
+      width: 531
       height: 621
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 524, y: 642}
+  m_LastWindowPixelSize: {x: 531, y: 642}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -521,21 +521,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d418fffffa18ffffb01bffff0425fffff0e3ffff06e4ffff16e4ffff60e4ffff6ee4ffff84e4ffffa8e4ffffb0e4ffffd8e4ffff66fbffff
+      m_ExpandedIDs: 66fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: SubwayTrain
-        m_OriginalName: SubwayTrain
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -104282
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -568,7 +568,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 201
     y: 73
-    width: 584
+    width: 577
     height: 642
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
@@ -581,9 +581,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.7889535, y: 1.3842846, z: -6.465624}
+    m_Target: {x: -0.28733432, y: 1.7961456, z: 15.987724}
     speed: 2
-    m_Value: {x: -1.7889535, y: 1.3842846, z: -6.465624}
+    m_Value: {x: -0.28733432, y: 1.7961456, z: 15.987724}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -629,20 +629,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.12825525, y: -0.70180863, z: 0.13089742, w: -0.6890248}
+    m_Target: {x: 0.110237226, y: -0.0781676, z: 0.008227713, w: 0.9912565}
     speed: 2
-    m_Value: {x: -0.12923126, y: -0.7013049, z: 0.13189326, w: -0.688531}
+    m_Value: {x: 0.11018658, y: -0.07813169, z: 0.008223933, w: 0.99080104}
   m_Size:
-    m_Target: 6.73667
+    m_Target: 2.60085
     speed: 2
-    m_Value: 6.7366695
+    m_Value: 2.60085
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 0.5
-    m_SpeedNormalized: 0.24
+    m_Speed: 0.8
+    m_SpeedNormalized: 0.42
     m_SpeedMin: 0.01
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -725,34 +725,34 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials/Materials
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Materials/Materials
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\ozgur\Documents\GitHub\SubwaySurfers3D
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 65}
-    m_SelectedIDs: 10460000
-    m_LastClickedID: 17936
-    m_ExpandedIDs: 0000000002440000084400000a4400000c4400000e44000064440000ec9a000000ca9a3b
+    scrollPos: {x: 0, y: 60}
+    m_SelectedIDs: 86460000
+    m_LastClickedID: 18054
+    m_ExpandedIDs: 0000000086460000884600008a4600008c4600008e4600009046000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Materials
-      m_OriginalName: Materials
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 39650
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_SearchString: 
@@ -766,7 +766,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000024400000444000006440000084400000a4400000c4400000e44000010440000
+    m_ExpandedIDs: 0000000086460000884600008a4600008c4600008e46000090460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -845,7 +845,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 736
-    width: 1340
+    width: 1312
     height: 255
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &20

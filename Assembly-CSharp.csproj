@@ -52,6 +52,7 @@
   <ItemGroup>
      <Compile Include="Assets\Materials\Ragdoll\RagdollActivate.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\CheckPlayerPassedTrain.cs" />
      <Compile Include="Assets\Scripts\CoinClonerController.cs" />
      <Compile Include="Assets\Scripts\CoinRotationController.cs" />
      <Compile Include="Assets\Scripts\CopAnimationController.cs" />
@@ -59,7 +60,9 @@
      <Compile Include="Assets\Scripts\CopPositionController.cs" />
      <Compile Include="Assets\Scripts\CopRotation.cs" />
      <Compile Include="Assets\Scripts\CreateNewObstacles.cs" />
+     <Compile Include="Assets\Scripts\CreateNewTraines.cs" />
      <Compile Include="Assets\Scripts\DestroyPlatform.cs" />
+     <Compile Include="Assets\Scripts\DetermineObstacleOrTrain.cs" />
      <Compile Include="Assets\Scripts\GameEndController.cs" />
      <Compile Include="Assets\Scripts\PlayerAnimationController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />

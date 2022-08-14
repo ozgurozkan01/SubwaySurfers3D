@@ -7,47 +7,39 @@ public class CreateNewObstacles : MonoBehaviour
     [SerializeField] private GameObject obstacleOverPassPrefab;
     [SerializeField] private GameObject obstacleUnderPassPrefab;
     [SerializeField] private GameObject obstacleNoPassPrefab;
-    [SerializeField] private GameObject[] lastObstacles;
-    [SerializeField] private int[] obstacleTypeList = new int[3]; // ( 0-> NoPass, 1-> UnderPass, 2-> OverPass)
+    public GameObject[] lastObstacles;
+    public int[] obstacleTypeList = new int[3]; // ( 0-> NoPass, 1-> UnderPass, 2-> OverPass)
     [SerializeField] private DestroyPlatform destroyPlatform;
     [SerializeField] private CoinClonerController coinClonerController;
+
     
     private GameObject[] _platformHolder;
     private int _obstacleIndex;
     private int _obstacleType;
     private int _passControl;
     
-    private bool _triggerController = true;
+
 
     void Awake()
     {
         _platformHolder = new GameObject[3];
     }
 
-    private void OnTriggerExit(Collider collision)
+    public void DetermineTheObstacleType()
     {
-        if (collision.gameObject.CompareTag("Gate") && _triggerController)
+        for (int i = 0; i < obstacleTypeList.Length; i++)
         {
-            DetermineTheObstacleType(obstacleTypeList);
-            destroyPlatform.timeController = true;
-        }
-    }
-    
-    private void DetermineTheObstacleType(int[] objectList)
-    {
-        for (int i = 0; i < objectList.Length; i++)
-        {
-            objectList[i] = Random.Range(0, 3);
+            obstacleTypeList[i] = Random.Range(0, 3);
         }
         
-        CheckPassExisted(objectList);
+        CheckPassExisted();
     }
 
-    private void CheckPassExisted(int[] obstacleList)
+    private void CheckPassExisted()
     {
-        for (int i = 0; i < obstacleList.Length; i++)
+        for (int i = 0; i < obstacleTypeList.Length; i++)
         {
-            if (obstacleList[i] == 1 || obstacleList[i] == 2)
+            if (obstacleTypeList[i] == 1 || obstacleTypeList[i] == 2)
             {
                 _passControl = 1;
             }
@@ -57,18 +49,18 @@ public class CreateNewObstacles : MonoBehaviour
         {
             _obstacleIndex = Random.Range(0, 3);
             _obstacleType = Random.Range(1, 3);
-            obstacleList[_obstacleIndex] = _obstacleType;
+            obstacleTypeList[_obstacleIndex] = _obstacleType;
         }
 
         _passControl = 0;
-        AttachTheObstacles(obstacleList);
+        AttachTheObstacles();
     }
     
-    private void AttachTheObstacles(int[] obstacleList)
+    private void AttachTheObstacles()
     {
-        for (int i = 0; i < obstacleList.Length; i++)
+        for (int i = 0; i < obstacleTypeList.Length; i++)
         {
-            if (obstacleList[i] == 0)
+            if (obstacleTypeList[i] == 0)
             {
                 GameObject newObstacle = Instantiate(
                     obstacleNoPassPrefab, 
@@ -78,11 +70,12 @@ public class CreateNewObstacles : MonoBehaviour
                 _platformHolder[i] = lastObstacles[i];
                 lastObstacles[i] = newObstacle;
                 destroyPlatform.newPassedPlatform[i] = _platformHolder[i];
+                
                 coinClonerController.obstaclesPositionX[i] = 0;
                 coinClonerController.obstaclesPositionZ[i] = 0;
             }
             
-            else if (obstacleList[i] == 1)
+            else if (obstacleTypeList[i] == 1)
             {
                 GameObject newObstacle = Instantiate(
                     obstacleUnderPassPrefab, 
@@ -92,11 +85,12 @@ public class CreateNewObstacles : MonoBehaviour
                 _platformHolder[i] = lastObstacles[i];
                 lastObstacles[i] = newObstacle;
                 destroyPlatform.newPassedPlatform[i] = _platformHolder[i];
+                
                 coinClonerController.obstaclesPositionX[i] = lastObstacles[i].transform.position.x;
                 coinClonerController.obstaclesPositionZ[i] = lastObstacles[i].transform.position.z;
             }
             
-            else if (obstacleList[i] == 2)
+            else if (obstacleTypeList[i] == 2)
             {
                 GameObject newObstacle = Instantiate(
                     obstacleOverPassPrefab, 
@@ -106,6 +100,7 @@ public class CreateNewObstacles : MonoBehaviour
                 _platformHolder[i] = lastObstacles[i];
                 lastObstacles[i] = newObstacle;
                 destroyPlatform.newPassedPlatform[i] = _platformHolder[i];
+                
                 coinClonerController.obstaclesPositionX[i] = lastObstacles[i].transform.position.x;
                 coinClonerController.obstaclesPositionZ[i] = lastObstacles[i].transform.position.z;
             }
