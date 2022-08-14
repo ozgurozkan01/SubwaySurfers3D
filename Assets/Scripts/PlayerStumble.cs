@@ -10,7 +10,6 @@ public class PlayerStumble : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             collisionNumber++;
-            Debug.Log(collisionNumber);
             collision.gameObject.GetComponent<Collider>().enabled = false;
             isStumbling = true;
             copPositionController.CatchThePlayer();

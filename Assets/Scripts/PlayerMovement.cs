@@ -3,14 +3,12 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     [SerializeField] private float jumpForce;
-    [SerializeField] private float diveForce;
     [SerializeField] private CopMovement copMovement;
     [SerializeField] private PlayerRotation playerRotation;
     private Rigidbody _rigidBody;
 
     public bool isGrounded;
-    private bool isJumping;
-    
+
     private bool _goLeft;
     private bool _goRight;
     private bool _goMiddleFromRight;
@@ -39,10 +37,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-        if (!isGrounded && isJumping && Input.GetKey(KeyCode.S))
-        {
-            DiveThroughDownward();
-        }
     }
 
     private void Move()
@@ -53,15 +47,9 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         _rigidBody.velocity = new Vector3(_rigidBody.velocity.x, jumpForce, _rigidBody.velocity.z);
-        isJumping = true;
         isGrounded = false;
     }
 
-    private void DiveThroughDownward()
-    {
-        _rigidBody.velocity = new Vector3(_rigidBody.velocity.x, diveForce, _rigidBody.velocity.z);
-    }
-    
     private void ChangeTheLine()
     {
         if (Input.GetKeyDown(KeyCode.A) && _line == "Middle" && _lineNumber != 1)

@@ -3,51 +3,19 @@
 public class CreateNewTraines : MonoBehaviour
 {
     [SerializeField] private GameObject originalTrainPrefab;
-    [SerializeField] private CreateNewObstacles createNewObstacles;
-    private int trainAmount; 
-    private int[] trainLine; 
-    void Awake()
-    {
-        trainLine = new int[2];
-    }
+    [SerializeField] private DetermineObstacleOrTrain determineObject;
+    [SerializeField] private DestroyPlatform destroyPlatform;
 
-    private void DetermineTrainAmountRandomly()
+    [HideInInspector] public int trainAmount; 
+     
+    public void CreateNewTrain(int lastObjectIndex)
     {
-        trainAmount = Random.Range(1, 3); // 1 or 2
-    }
-
-    private void DetermineTrainLine()
-    {
-        for (int i = 0; i < trainAmount; i++)
-        {
-            trainLine[i] = Random.Range(0, 3); // 1-> left, 2-> middle, 3->left
-        }
-    } 
-    
-    public void CreateNewTrain()
-    {
-        DetermineTrainAmountRandomly();
-        DetermineTrainLine();
-        
-        if (trainAmount == 1)
-        {
-            GameObject newTrain = Instantiate(originalTrainPrefab, 
-                createNewObstacles.lastObstacles[trainLine[0]].transform.position + new Vector3(0f, 0f, 60f) 
+        GameObject newTrain = Instantiate(originalTrainPrefab, 
+                determineObject.firstObsPositionsHolder[lastObjectIndex] + new Vector3(0f, 0f, determineObject.trainPositionZ) 
                 , transform.rotation);
-        }
-        
-        else if (trainAmount == 2)
-        {
-            for (int i = 0; i < trainAmount; i++)
-            {
-                GameObject newTrain = Instantiate(originalTrainPrefab, 
-                    createNewObstacles.lastObstacles[trainLine[i]].transform.position + new Vector3(0f, 0f, 60f) 
-                    , transform.rotation);
 
-                createNewObstacles.lastObstacles[i] = newTrain;
-            }
-        }
+        determineObject.objectHolder[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
+        determineObject.lastObjects[lastObjectIndex] = newTrain;
+        destroyPlatform.newPassedPlatform[lastObjectIndex] = determineObject.objectHolder[lastObjectIndex];
     }
-    
-    
 }

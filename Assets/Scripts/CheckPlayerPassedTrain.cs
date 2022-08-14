@@ -15,7 +15,6 @@ public class CheckPlayerPassedTrain : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.right, out hit, playerLayer))
         {
-            Debug.Log("Passed");
             isPassed = true;
         }
     }

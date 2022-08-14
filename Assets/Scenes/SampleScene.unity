@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.45167318, g: 0.47895798, b: 0.5471698, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.05
+  m_FogDensity: 0.07
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -296,7 +296,7 @@ PrefabInstance:
     - target: {fileID: 3346810422445417791, guid: f3eeacdee09e4834a87e1d4c2ec7c2bc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3346810422445417791, guid: f3eeacdee09e4834a87e1d4c2ec7c2bc,
         type: 3}
@@ -717,13 +717,10 @@ MonoBehaviour:
     type: 3}
   obstacleNoPassPrefab: {fileID: 9020119623341431244, guid: a638ee75895addc43a4655f04ee2173e,
     type: 3}
-  lastObstacles:
-  - {fileID: 1401033676}
-  - {fileID: 443349906}
-  - {fileID: 88780501}
-  obstacleTypeList: 000000000000000000000000
+  obstacleType: 0
   destroyPlatform: {fileID: 559303012}
   coinClonerController: {fileID: 1652663950}
+  determineObject: {fileID: 559303018}
 --- !u!114 &559303011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,7 +809,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalTrainPrefab: {fileID: 100000, guid: 09419d27c38abab4cac738e2f8ee8518, type: 3}
-  createNewObstacles: {fileID: 559303010}
+  determineObject: {fileID: 559303018}
+  destroyPlatform: {fileID: 559303012}
+  trainAmount: 0
 --- !u!114 &559303017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,9 +844,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   createObstacle: {fileID: 559303010}
   createTrain: {fileID: 559303016}
+  objectHolder: []
+  lastObjects:
+  - {fileID: 1401033676}
+  - {fileID: 443349906}
+  - {fileID: 88780501}
+  noPassLineAmount: 0
+  firstObsPositionsHolder: []
   destroyPlatform: {fileID: 559303012}
   checkPassed: {fileID: 40280630435143920, guid: 09419d27c38abab4cac738e2f8ee8518,
     type: 3}
+  obsPositionZ: 20
+  trainPositionZ: 30
 --- !u!1 &625188298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0683d9977402bee408ed0fa5bc6292a1,
@@ -1026,7 +1034,7 @@ Transform:
   m_Children:
   - {fileID: 170171481}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &671395034 stripped
 GameObject:
@@ -1391,7 +1399,7 @@ RectTransform:
   - {fileID: 821724851}
   - {fileID: 415846229}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1484,7 +1492,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &997777304 stripped
 GameObject:
@@ -2829,8 +2837,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalCoinPrefab: {fileID: 233438255712763799, guid: fb36c8b71798da4478e418d0724432f2,
     type: 3}
-  obstaclesPositionX: []
-  obstaclesPositionZ: []
+  obstaclesPositionX: 0
+  obstaclesPositionZ: 0
 --- !u!4 &1652663951
 Transform:
   m_ObjectHideFlags: 0
@@ -2843,7 +2851,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1685855906
 GameObject:
@@ -2937,7 +2945,7 @@ Transform:
   m_LocalScale: {x: 1.1, y: 1, z: 150}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687258581
 GameObject:
@@ -3296,6 +3304,7 @@ MonoBehaviour:
   copMovement: {fileID: 1819390812}
   lerpMultiplier: 250
   gameEnd: {fileID: 559303017}
+  playerStumble: {fileID: 559303013}
 --- !u!1 &1842401355 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2123234437176646832, guid: 0683d9977402bee408ed0fa5bc6292a1,
@@ -3781,7 +3790,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 45, y: 130, z: 90}
 --- !u!1001 &199146969532427695
 PrefabInstance:
@@ -3793,7 +3802,7 @@ PrefabInstance:
     - target: {fileID: 402452076335397833, guid: a638ee75895addc43a4655f04ee2173e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 402452076335397833, guid: a638ee75895addc43a4655f04ee2173e,
         type: 3}
@@ -3882,7 +3891,7 @@ PrefabInstance:
     - target: {fileID: 9140574664517239039, guid: fcc7b2492ce76a5418683b3e62a10d12,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9140574664517239039, guid: fcc7b2492ce76a5418683b3e62a10d12,
         type: 3}

@@ -6,6 +6,7 @@ public class CopPositionController : MonoBehaviour
     [SerializeField] private CopMovement copMovement;
     [SerializeField] private float lerpMultiplier;
     [SerializeField] private GameEndController gameEnd;
+    [SerializeField] private PlayerStumble playerStumble;
 
     public void CatchThePlayer()
     {
@@ -22,9 +23,10 @@ public class CopPositionController : MonoBehaviour
     
     IEnumerator MovingAwayFromPlayer()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         copMovement.speed = 5f;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         copMovement.speed = 8f;
+        playerStumble.collisionNumber = 0;
     }
 }
