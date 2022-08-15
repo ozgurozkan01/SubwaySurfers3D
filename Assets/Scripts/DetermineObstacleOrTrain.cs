@@ -14,26 +14,20 @@ public class DetermineObstacleOrTrain : MonoBehaviour
     [HideInInspector] public Vector3[] firstObsPositionsHolder;
     
     [SerializeField] private DestroyPlatform destroyPlatform;
-    [SerializeField] private CheckPlayerPassedTrain checkPassed;
-
-    [HideInInspector] public float obsPositionZ = 20f;
-    [HideInInspector] public float trainPositionZ = 30f;
+    
+    public float obsPositionZ = 40f;
+    public float trainPositionZ = 50f;
     
     void Awake()
     {
         firstObsPositionsHolder = new Vector3[3];
         
         for (int i = 0; i < lineAmount; i++)
-        {
+        {   
             firstObsPositionsHolder[i] = lastObjects[i].transform.position;
         }
         
         objectHolder = new GameObject[3];
-    }
-
-    private void Update()
-    {
-        PlayerPassedTrain();
     }
 
     private void OnTriggerExit(Collider collision)
@@ -45,15 +39,7 @@ public class DetermineObstacleOrTrain : MonoBehaviour
         }
     }
 
-    private void PlayerPassedTrain()
-    {
-        if (checkPassed.isPassed)
-        {
-            InstantiateObject();
-            checkPassed.isPassed = false;
-        }
-    }
-    
+
     private void DetermineTypeOfObject()
     {
         _typeObject = Random.Range(0, 2); // 0-> train, 1-> obstacle
@@ -90,8 +76,8 @@ public class DetermineObstacleOrTrain : MonoBehaviour
             }   
         }
         noPassLineAmount = 0;
-        obsPositionZ += 20f;
-        trainPositionZ += 20f;
+        obsPositionZ += 30f;
+        trainPositionZ += 30f;
     }
     
 }

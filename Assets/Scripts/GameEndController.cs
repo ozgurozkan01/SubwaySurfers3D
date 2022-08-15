@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameEndController : MonoBehaviour
 {
@@ -9,7 +8,10 @@ public class GameEndController : MonoBehaviour
     [SerializeField] private PlayerAnimationController playerAnimCont;
     [SerializeField] private CopAnimationController copAnimCont;
 
+    private bool _isColliderWithTrain;
+    private bool _isCollideWithNoPass;
     [HideInInspector] public bool gameEndControl;
+    
     void Update()
     {
         CheckGameEnded();
@@ -19,6 +21,11 @@ public class GameEndController : MonoBehaviour
     private void CheckGameEnded()
     {
         if (playerStumble.collisionNumber >= 2)
+        {
+            gameEndControl = true;
+        }
+        
+        else if (_isCollideWithNoPass || _isColliderWithTrain)
         {
             gameEndControl = true;
         }
@@ -41,7 +48,13 @@ public class GameEndController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("NoPass"))
         {
-            gameEndControl = true;
+            _isCollideWithNoPass = true;
+        }
+
+        else if (collision.gameObject.CompareTag("Train"))
+        {
+            collision.gameObject.GetComponent<Collider>().enabled = false;
+            _isColliderWithTrain = true;
         }
     }
 }

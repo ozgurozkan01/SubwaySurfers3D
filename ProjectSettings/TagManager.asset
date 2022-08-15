@@ -13,6 +13,8 @@ TagManager:
   - NoPass
   - Bones
   - Foot
+  - Spin
+  - Train
   layers:
   - Default
   - TransparentFX
@@ -30,7 +32,7 @@ TagManager:
   - Gate
   - Foot
   - Obstacle
-  - 
+  - Train
   - 
   - 
   - 

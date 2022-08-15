@@ -666,14 +666,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559303005}
   serializedVersion: 2
-  m_Mass: 85
+  m_Mass: 75
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 2
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!114 &559303007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,7 +688,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   jumpForce: 4
-  diveForce: -4
   copMovement: {fileID: 1819390812}
   playerRotation: {fileID: 559303014}
   isGrounded: 0
@@ -852,10 +851,8 @@ MonoBehaviour:
   noPassLineAmount: 0
   firstObsPositionsHolder: []
   destroyPlatform: {fileID: 559303012}
-  checkPassed: {fileID: 40280630435143920, guid: 09419d27c38abab4cac738e2f8ee8518,
-    type: 3}
-  obsPositionZ: 20
-  trainPositionZ: 30
+  obsPositionZ: 30
+  trainPositionZ: 40
 --- !u!1 &625188298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0683d9977402bee408ed0fa5bc6292a1,
@@ -2109,7 +2106,7 @@ PrefabInstance:
     - target: {fileID: -605749304967555489, guid: bc3bddf9ec4da9d4b94b70063e88c164,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Spin
       objectReference: {fileID: 0}
     - target: {fileID: 24886559995271516, guid: bc3bddf9ec4da9d4b94b70063e88c164,
         type: 3}
