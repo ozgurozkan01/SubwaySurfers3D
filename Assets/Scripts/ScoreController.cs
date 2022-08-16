@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 public class ScoreController : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
-    private int _score;
+    [SerializeField] private PowerUpController powerUpCont;
+    [HideInInspector] public int _score;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Coin"))
@@ -12,10 +15,19 @@ public class ScoreController : MonoBehaviour
             IncreaseScore();    
         }
     }
+    
 
     private void IncreaseScore()
     {
-        _score += 1;
+        if (powerUpCont.doubleCoingActivate)
+        {
+            _score += 2;
+        }
+        
+        else if (!powerUpCont.doubleCoingActivate)
+        {
+            _score += 1;
+        }
         scoreText.text = "" + _score;
     }
 }

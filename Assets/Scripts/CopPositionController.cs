@@ -24,9 +24,9 @@ public class CopPositionController : MonoBehaviour
     IEnumerator MovingAwayFromPlayer()
     {
         yield return new WaitForSeconds(5f);
-        copMovement.speed = 5f;
+        copMovement.speed = 6f;
         yield return new WaitForSeconds(1.5f);
-        copMovement.speed = 8f;
+        copMovement.speed = 9f;
         playerStumble.collisionNumber = 0;
     }
 }

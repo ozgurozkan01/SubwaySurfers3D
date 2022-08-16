@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a10457b71b15584583652a596bcefb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 9
   jumpForce: 4
   copMovement: {fileID: 1819390812}
   playerRotation: {fileID: 559303014}
@@ -698,6 +698,27 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 1421426196}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &559303009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559303005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f255f11da804fba4e9819098f95d7019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doubleCoinPrefab: {fileID: 6330594698076330734, guid: 68443d99626ae694baec4c9aeb9ed2a1,
+    type: 3}
+  coinMagnetPrefab: {fileID: 262745432498058921, guid: 9f0fdb29ba1a4964e8925ea49e17900d,
+    type: 3}
+  determineObstacleOrTrain: {fileID: 559303018}
+  scoreController: {fileID: 559303015}
+  _powerUpDuration: 25
+  coinMagnetActivate: 0
+  doubleCoingActivate: 0
 --- !u!114 &559303010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -795,6 +816,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 415846230}
+  powerUpCont: {fileID: 559303009}
+  _score: 0
 --- !u!114 &559303016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,7 +830,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af72d238d909b6f4d99f9aec65b56336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalTrainPrefab: {fileID: 100000, guid: 09419d27c38abab4cac738e2f8ee8518, type: 3}
+  trainPrefabCanMove: {fileID: 100000, guid: 09419d27c38abab4cac738e2f8ee8518, type: 3}
+  trainPrefabNoMove: {fileID: 8971346829399815533, guid: 7147b3f754f5af443b4f4f1512ca1785,
+    type: 3}
   determineObject: {fileID: 559303018}
   destroyPlatform: {fileID: 559303012}
   trainAmount: 0
@@ -849,6 +874,7 @@ MonoBehaviour:
   - {fileID: 443349906}
   - {fileID: 88780501}
   noPassLineAmount: 0
+  staticLine: []
   firstObsPositionsHolder: []
   destroyPlatform: {fileID: 559303012}
   obsPositionZ: 30
@@ -3230,7 +3256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpForce: 3
-  speed: 8
+  speed: 9
   jumpingController: 0
   rollingController: 0
   pressAtoMiddle: 0

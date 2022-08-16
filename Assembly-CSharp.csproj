@@ -53,6 +53,7 @@
      <Compile Include="Assets\Materials\Ragdoll\RagdollActivate.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CoinClonerController.cs" />
+     <Compile Include="Assets\Scripts\CoinMovingMagnetPlayer.cs" />
      <Compile Include="Assets\Scripts\CoinRotationController.cs" />
      <Compile Include="Assets\Scripts\CopAnimationController.cs" />
      <Compile Include="Assets\Scripts\CopMovement.cs" />
@@ -67,9 +68,9 @@
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerRotation.cs" />
      <Compile Include="Assets\Scripts\PlayerStumble.cs" />
+     <Compile Include="Assets\Scripts\PowerUpController.cs" />
      <Compile Include="Assets\Scripts\ScoreController.cs" />
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-     <Compile Include="Assets\Scripts\TrainHitPlayer.cs" />
      <Compile Include="Assets\Scripts\TrainMovement.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
      <None Include="Assets\SubwayTrain\Shader\Model Shader DX9.shader" />

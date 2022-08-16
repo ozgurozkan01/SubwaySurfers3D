@@ -11,6 +11,7 @@ public class DetermineObstacleOrTrain : MonoBehaviour
     private int _typeObject;
     private int lineAmount = 3;
     [HideInInspector] public int noPassLineAmount;
+    [HideInInspector] public GameObject[] staticLine; // No move
     [HideInInspector] public Vector3[] firstObsPositionsHolder;
     
     [SerializeField] private DestroyPlatform destroyPlatform;
@@ -20,6 +21,7 @@ public class DetermineObstacleOrTrain : MonoBehaviour
     
     void Awake()
     {
+        staticLine = new GameObject[3];
         firstObsPositionsHolder = new Vector3[3];
         
         for (int i = 0; i < lineAmount; i++)
@@ -76,8 +78,8 @@ public class DetermineObstacleOrTrain : MonoBehaviour
             }   
         }
         noPassLineAmount = 0;
-        obsPositionZ += 30f;
-        trainPositionZ += 30f;
+        obsPositionZ += 40f;
+        trainPositionZ += 40f;
     }
     
 }
