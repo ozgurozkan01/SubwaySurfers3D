@@ -668,10 +668,10 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 75
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &559303007
@@ -716,9 +716,9 @@ MonoBehaviour:
     type: 3}
   determineObstacleOrTrain: {fileID: 559303018}
   scoreController: {fileID: 559303015}
-  _powerUpDuration: 25
+  powerUpDuration: 0
   coinMagnetActivate: 0
-  doubleCoingActivate: 0
+  doubleCoinActivate: 0
 --- !u!114 &559303010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,6 +875,7 @@ MonoBehaviour:
   - {fileID: 88780501}
   noPassLineAmount: 0
   staticLine: []
+  staticLineAmount: 0
   firstObsPositionsHolder: []
   destroyPlatform: {fileID: 559303012}
   obsPositionZ: 30

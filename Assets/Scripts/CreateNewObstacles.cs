@@ -44,6 +44,7 @@ public class CreateNewObstacles : MonoBehaviour
                 
                 determineObject.objectHolder[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
                 determineObject.lastObjects[lastObjectIndex] = newObstacle;
+                determineObject.staticLine[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
                 destroyPlatform.newPassedPlatform[lastObjectIndex] = determineObject.objectHolder[lastObjectIndex];
             }
             
@@ -56,6 +57,7 @@ public class CreateNewObstacles : MonoBehaviour
                 
                 determineObject.objectHolder[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
                 determineObject.lastObjects[lastObjectIndex] = newObstacle;
+                determineObject.staticLine[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
                 destroyPlatform.newPassedPlatform[lastObjectIndex] = determineObject.objectHolder[lastObjectIndex];
                 
                 coinClonerController.obstaclesPositionX = determineObject.lastObjects[lastObjectIndex].transform.position.x;
@@ -72,6 +74,7 @@ public class CreateNewObstacles : MonoBehaviour
 
                 determineObject.objectHolder[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
                 determineObject.lastObjects[lastObjectIndex] = newObstacle;
+                determineObject.staticLine[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
                 destroyPlatform.newPassedPlatform[lastObjectIndex] = determineObject.objectHolder[lastObjectIndex];
                 
                 coinClonerController.obstaclesPositionX= determineObject.lastObjects[lastObjectIndex].transform.position.x;

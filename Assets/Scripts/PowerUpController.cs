@@ -8,14 +8,14 @@ public class PowerUpController : MonoBehaviour
     [SerializeField] private DetermineObstacleOrTrain determineObstacleOrTrain;
     [SerializeField] private ScoreController scoreController;
     
-    [SerializeField] private float _powerUpDuration;
+    [SerializeField] private float powerUpDuration;
     private float _timerForCoinMagnet;
     private float _timerForDoubleCoin;
 
-    private int powerUpType; // 1-> magnet, 2-> doubleCoin
+    private int _powerUpType; // 1-> magnet, 2-> doubleCoin
     
     [HideInInspector] public bool coinMagnetActivate;
-    [HideInInspector] public bool doubleCoingActivate;
+    [HideInInspector] public bool doubleCoinActivate;
     private bool _isTimingForCoinMagnet;
     private bool _isTimingForDoubleCoin;
     private bool _powerUpSpawnController = true;
@@ -24,8 +24,8 @@ public class PowerUpController : MonoBehaviour
     
     void Awake()
     { 
-        _timerForCoinMagnet = _powerUpDuration;
-        _timerForDoubleCoin = _powerUpDuration;
+        _timerForCoinMagnet = powerUpDuration;
+        _timerForDoubleCoin = powerUpDuration;
     }
     
     void Update()
@@ -37,22 +37,20 @@ public class PowerUpController : MonoBehaviour
     
     private void DetermineLineOfPowerUp()
     {
-        _lineNumber = Random.Range(0, 3);
+        _lineNumber = Random.Range(0, determineObstacleOrTrain.staticLineAmount);
     }
     
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("DoubleCoin"))
         {
-            Debug.Log("player have collided");
             _isTimingForDoubleCoin = true;
-            doubleCoingActivate = true;
+            doubleCoinActivate = true;
             Destroy(collision.gameObject);
         }
         
         else if (collision.gameObject.CompareTag("CoinMagnet"))
         {
-            Debug.Log("player have collided");
             _isTimingForCoinMagnet = true;
             coinMagnetActivate = true;
             Destroy(collision.gameObject);
@@ -61,7 +59,7 @@ public class PowerUpController : MonoBehaviour
 
     private void DeterminePowerUpType()
     {
-        powerUpType = Random.Range(1, 3);
+        _powerUpType = Random.Range(1, 3);
     }
 
     private void CreatePowerUp()
@@ -70,20 +68,20 @@ public class PowerUpController : MonoBehaviour
         DetermineLineOfPowerUp();
         
         // Magnet
-        if (powerUpType == 1)
+        if (_powerUpType == 1)
         {
             GameObject newCoinMagnet = Instantiate(
                 coinMagnetPrefab,
-                determineObstacleOrTrain.lastObjects[_lineNumber].transform.position + new Vector3(0F, 1.55F, 13F)
+                determineObstacleOrTrain.staticLine[_lineNumber].transform.position + new Vector3(0F, 1.55F, 13F)
                 , Quaternion.identity);
         }
         
         //DoubleCoin 
-        else if (powerUpType == 2)
+        else if (_powerUpType == 2)
         {
             GameObject newDoubleCoin = Instantiate(
-                coinMagnetPrefab, 
-                determineObstacleOrTrain.lastObjects[_lineNumber].transform.position + new Vector3(0f, 1.55f, 13f), 
+                doubleCoinPrefab, 
+                determineObstacleOrTrain.staticLine[_lineNumber].transform.position + new Vector3(0f, 1.55f, 13f), 
                 Quaternion.identity);
                  
         }
@@ -108,10 +106,10 @@ public class PowerUpController : MonoBehaviour
         {
             _timerForDoubleCoin -= Time.deltaTime;
 
-            if (_timerForCoinMagnet <= 0)
+            if (_timerForDoubleCoin <= 0)
             {
                 _timerForDoubleCoin = 0;
-                doubleCoingActivate = false;
+                doubleCoinActivate = false;
                 _isTimingForDoubleCoin = false;
             }
         }

@@ -19,12 +19,12 @@ public class ScoreController : MonoBehaviour
 
     private void IncreaseScore()
     {
-        if (powerUpCont.doubleCoingActivate)
+        if (powerUpCont.doubleCoinActivate)
         {
             _score += 2;
         }
         
-        else if (!powerUpCont.doubleCoingActivate)
+        else if (!powerUpCont.doubleCoinActivate)
         {
             _score += 1;
         }

@@ -11,7 +11,8 @@ public class DetermineObstacleOrTrain : MonoBehaviour
     private int _typeObject;
     private int lineAmount = 3;
     [HideInInspector] public int noPassLineAmount;
-    [HideInInspector] public GameObject[] staticLine; // No move
+    [HideInInspector] public GameObject[] staticLine;
+    [HideInInspector] public int staticLineAmount;// No move
     [HideInInspector] public Vector3[] firstObsPositionsHolder;
     
     [SerializeField] private DestroyPlatform destroyPlatform;
@@ -75,11 +76,12 @@ public class DetermineObstacleOrTrain : MonoBehaviour
             {
                 createTrain.trainAmount = 0;
                 createObstacle.CreateTheObstacles(i);
+                staticLineAmount += 1;
             }   
         }
         noPassLineAmount = 0;
         obsPositionZ += 40f;
         trainPositionZ += 40f;
+        staticLineAmount = 0;
     }
-    
 }

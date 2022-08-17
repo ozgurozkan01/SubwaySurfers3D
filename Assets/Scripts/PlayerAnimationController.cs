@@ -6,7 +6,7 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] private PlayerStumble playerStumble;
     [SerializeField] private GameEndController gameEnd;
     private bool isGrounded;
-    void Update()
+    void LateUpdate()
     {
         RunningAnimation();
         JumpingAnimation();

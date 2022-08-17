@@ -119,8 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpCont: {fileID: 0}
   spin: {fileID: 0}
-  lerpMultiplier: 0
-  speed: 0
+  speed: 15
 --- !u!135 &5771013683537513314
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -145,7 +144,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.25
+  m_Height: 0
   m_Radius: 0
   m_SlopeLimit: 45
   m_StepOffset: 0

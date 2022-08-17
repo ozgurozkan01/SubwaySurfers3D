@@ -5,7 +5,7 @@ public class CopAnimationController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private CopMovement copMovement;
     
-    void Update()
+    void LateUpdate()
     {
         CopRunningAnimation();
         CopRollingAnimaiton();

@@ -38,7 +38,10 @@ public class CreateNewTraines : MonoBehaviour
             
             determineObject.objectHolder[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
             determineObject.lastObjects[lastObjectIndex] = newTrain;
+            determineObject.staticLine[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
             destroyPlatform.newPassedPlatform[lastObjectIndex] = determineObject.objectHolder[lastObjectIndex];
+
+            determineObject.staticLineAmount += 1;
         }
 
     }

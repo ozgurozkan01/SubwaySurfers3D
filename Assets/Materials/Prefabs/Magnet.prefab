@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6876833724177594278}
   - component: {fileID: 8493878501082829909}
   - component: {fileID: 5238757350588299136}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Magnet
   m_TagString: CoinMagnet
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4251721863644258986}
   - component: {fileID: 5789521554783142178}
   - component: {fileID: 4491781097698042894}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 2301430531952861137}
   - component: {fileID: 8004466377366667040}
   - component: {fileID: 2487497162664491435}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 471009921242442161}
   - component: {fileID: 980821970754097904}
   - component: {fileID: 1017618647056512023}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 6027387389321567202}
   - component: {fileID: 4810234441538333500}
   - component: {fileID: 6467258824405020723}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 531484921503144528}
   - component: {fileID: 2014174211226256806}
   - component: {fileID: 123820490544239912}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 5980119379982163482}
   - component: {fileID: 8382742922584975770}
   - component: {fileID: 9182186511001962690}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 8427649356235820034}
   - component: {fileID: 5335701239345615308}
   - component: {fileID: 4239239527353486055}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

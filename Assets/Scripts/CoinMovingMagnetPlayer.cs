@@ -4,7 +4,6 @@ public class CoinMovingMagnetPlayer : MonoBehaviour
 {
     [SerializeField] private PowerUpController powerUpCont;
     [SerializeField] private GameObject spin;
-    [SerializeField] private float lerpMultiplier;
     [SerializeField] private float speed;
     
     private CharacterController _controller;
@@ -22,17 +21,23 @@ public class CoinMovingMagnetPlayer : MonoBehaviour
     void Update()
     {
         movementDirectionMagnitude = (spin.transform.position - transform.position).magnitude;
-        CoinMovingToPlayer();
+        CheckCoinMagnetActivate();
     }
 
-    private void CoinMovingToPlayer()
+    private void CheckCoinMagnetActivate()
     {
         if (powerUpCont.coinMagnetActivate)
         {
-            if (movementDirectionMagnitude <= 10f)
-            {
-                _controller.Move(movementDirection * (speed * Time.deltaTime));
-            }
+            CoinMoveToPlayer();
+        }
+    }
+
+    private void CoinMoveToPlayer()
+    {
+        if (movementDirectionMagnitude <= 10f)
+        {
+            movementDirection = spin.transform.position - transform.position;
+            _controller.Move(movementDirection * (speed * Time.deltaTime));
         }
     }
 }
