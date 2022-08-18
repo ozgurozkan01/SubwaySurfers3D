@@ -715,8 +715,7 @@ MonoBehaviour:
   coinMagnetPrefab: {fileID: 262745432498058921, guid: 9f0fdb29ba1a4964e8925ea49e17900d,
     type: 3}
   determineObstacleOrTrain: {fileID: 559303018}
-  scoreController: {fileID: 559303015}
-  powerUpDuration: 0
+  powerUpDuration: 25
   coinMagnetActivate: 0
   doubleCoinActivate: 0
 --- !u!114 &559303010

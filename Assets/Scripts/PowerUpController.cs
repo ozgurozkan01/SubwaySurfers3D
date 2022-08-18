@@ -6,7 +6,6 @@ public class PowerUpController : MonoBehaviour
     [SerializeField] private GameObject doubleCoinPrefab;
     [SerializeField] private GameObject coinMagnetPrefab;
     [SerializeField] private DetermineObstacleOrTrain determineObstacleOrTrain;
-    [SerializeField] private ScoreController scoreController;
     
     [SerializeField] private float powerUpDuration;
     private float _timerForCoinMagnet;
@@ -18,19 +17,19 @@ public class PowerUpController : MonoBehaviour
     [HideInInspector] public bool doubleCoinActivate;
     private bool _isTimingForCoinMagnet;
     private bool _isTimingForDoubleCoin;
-    private bool _powerUpSpawnController = true;
+    private bool _doubleCoinSpawnController = true;
+    private bool _coinMagnetSpawnController = true;
 
     private int _lineNumber;
     
-    void Awake()
-    { 
+    void Start()
+    {
         _timerForCoinMagnet = powerUpDuration;
         _timerForDoubleCoin = powerUpDuration;
     }
     
     void Update()
     {
-        SpawnPowerUp();
         TimerForPowerUpDuration();
     }
 
@@ -59,32 +58,18 @@ public class PowerUpController : MonoBehaviour
 
     private void DeterminePowerUpType()
     {
-        _powerUpType = Random.Range(1, 3);
+        _powerUpType = Random.Range(1, 3); // 1-> double coin, 2-> coin magnet
+        Debug.Log(_powerUpType);
     }
 
-    private void CreatePowerUp()
+    private void CreateDoubleCoinPowerUp()
     {
-        DeterminePowerUpType();
-        DetermineLineOfPowerUp();
-        
-        // Magnet
-        if (_powerUpType == 1)
-        {
-            GameObject newCoinMagnet = Instantiate(
-                coinMagnetPrefab,
-                determineObstacleOrTrain.staticLine[_lineNumber].transform.position + new Vector3(0F, 1.55F, 13F)
-                , Quaternion.identity);
-        }
-        
-        //DoubleCoin 
-        else if (_powerUpType == 2)
-        {
-            GameObject newDoubleCoin = Instantiate(
-                doubleCoinPrefab, 
-                determineObstacleOrTrain.staticLine[_lineNumber].transform.position + new Vector3(0f, 1.55f, 13f), 
-                Quaternion.identity);
-                 
-        }
+        GameObject newDoubleCoin = Instantiate(doubleCoinPrefab, determineObstacleOrTrain.staticLine[_lineNumber].transform.position + new Vector3(0f, 1.55f, 13f), transform.rotation);
+    }
+
+    private void CreateCoinMagnetPowerUp()
+    {
+        GameObject newCoinMagnet = Instantiate(coinMagnetPrefab,determineObstacleOrTrain.staticLine[_lineNumber].transform.position + new Vector3(0F, 1.55F, 13F), transform.rotation);
     }
     
     private void TimerForPowerUpDuration()
@@ -98,6 +83,7 @@ public class PowerUpController : MonoBehaviour
                 _timerForCoinMagnet = 0;
                 coinMagnetActivate = false;
                 _isTimingForCoinMagnet = false;
+                _coinMagnetSpawnController = true;
             }
         }
         
@@ -111,16 +97,25 @@ public class PowerUpController : MonoBehaviour
                 _timerForDoubleCoin = 0;
                 doubleCoinActivate = false;
                 _isTimingForDoubleCoin = false;
+                _doubleCoinSpawnController = true;
             }
         }
     }
 
-    private void SpawnPowerUp()
+    public void SpawnPowerUp()
     {
-        if (scoreController._score % 5 == 0 && _powerUpSpawnController && scoreController._score != 0)
+        DeterminePowerUpType();
+        DetermineLineOfPowerUp();
+        if (_doubleCoinSpawnController && _powerUpType == 1)
         {
-            CreatePowerUp();
-            _powerUpSpawnController = false;
+            CreateDoubleCoinPowerUp();
+            _doubleCoinSpawnController = false;
+        }
+        
+        else if (_coinMagnetSpawnController && _powerUpType == 2)
+        { 
+            CreateCoinMagnetPowerUp(); 
+            _coinMagnetSpawnController = false;
         }
     }
 }

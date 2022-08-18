@@ -14,6 +14,11 @@ public class ScoreController : MonoBehaviour
             Destroy(other.gameObject);
             IncreaseScore();    
         }
+        
+        if (other.gameObject.CompareTag("Coin") && _score % 50 == 0 && _score != 0)
+        {
+            powerUpCont.SpawnPowerUp();
+        }
     }
     
 
