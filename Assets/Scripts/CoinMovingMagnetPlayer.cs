@@ -5,23 +5,24 @@ public class CoinMovingMagnetPlayer : MonoBehaviour
     [SerializeField] private PowerUpController powerUpCont;
     [SerializeField] private GameObject spin;
     [SerializeField] private float speed;
-    
+
+    [HideInInspector] public bool isCoinMoving;
     private CharacterController _controller;
-    
-    private Vector3 movementDirection;
-    private float movementDirectionMagnitude;
+    private Vector3 _movementDirection;
+    private float _movementDirectionMagnitude;
     
     void Start()
     {
         _controller = GetComponent<CharacterController>();
         spin = GameObject.FindGameObjectWithTag("Spin");
-        powerUpCont = GameObject.FindObjectOfType<PowerUpController>();
+        powerUpCont = FindObjectOfType<PowerUpController>();
     }
     
     void Update()
     {
-        movementDirectionMagnitude = (spin.transform.position - transform.position).magnitude;
+        _movementDirectionMagnitude = (spin.transform.position - transform.position).magnitude;
         CheckCoinMagnetActivate();
+        ContinueToMoveTillReachPlayer();
     }
 
     private void CheckCoinMagnetActivate()
@@ -34,10 +35,24 @@ public class CoinMovingMagnetPlayer : MonoBehaviour
 
     private void CoinMoveToPlayer()
     {
-        if (movementDirectionMagnitude <= 10f)
+        if (_movementDirectionMagnitude <= 10f)
         {
-            movementDirection = spin.transform.position - transform.position;
-            _controller.Move(movementDirection * (speed * Time.deltaTime));
+            isCoinMoving = true;
+            CoinMovement();
         }
+    }
+
+    private void ContinueToMoveTillReachPlayer()
+    {
+        if (!powerUpCont.coinMagnetActivate && isCoinMoving)
+        {
+            CoinMovement();
+        }
+    }
+
+    private void CoinMovement()
+    {
+        _movementDirection = spin.transform.position - transform.position;
+        _controller.Move(_movementDirection * (speed * Time.deltaTime));
     }
 }

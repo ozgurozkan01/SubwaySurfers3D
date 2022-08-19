@@ -3,7 +3,6 @@ using Random = UnityEngine.Random;
 
 public class CreateNewObstacles : MonoBehaviour
 {
-    
     [SerializeField] private GameObject obstacleOverPassPrefab;
     [SerializeField] private GameObject obstacleUnderPassPrefab;
     [SerializeField] private GameObject obstacleNoPassPrefab;
@@ -43,8 +42,10 @@ public class CreateNewObstacles : MonoBehaviour
                 
                 determineObject.objectHolder[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
                 determineObject.lastObjects[lastObjectIndex] = newObstacle;
-                determineObject.staticLine[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
+                determineObject.staticLine[determineObject.staticLineIndex] = determineObject.lastObjects[lastObjectIndex];
                 destroyPlatform.newPassedPlatform[lastObjectIndex] = determineObject.objectHolder[lastObjectIndex];
+
+                determineObject.staticLineIndex += 1;
             }
             
             else if (obstacleType == 1)
@@ -56,8 +57,9 @@ public class CreateNewObstacles : MonoBehaviour
                 
                 determineObject.objectHolder[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
                 determineObject.lastObjects[lastObjectIndex] = newObstacle;
-                determineObject.staticLine[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
+                determineObject.staticLine[determineObject.staticLineIndex] = determineObject.lastObjects[lastObjectIndex];
                 destroyPlatform.newPassedPlatform[lastObjectIndex] = determineObject.objectHolder[lastObjectIndex];
+                determineObject.staticLineIndex += 1;
                 
                 coinClonerController.obstaclesPositionX = determineObject.lastObjects[lastObjectIndex].transform.position.x;
                 coinClonerController.obstaclesPositionZ = determineObject.lastObjects[lastObjectIndex].transform.position.z;
@@ -73,8 +75,9 @@ public class CreateNewObstacles : MonoBehaviour
 
                 determineObject.objectHolder[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
                 determineObject.lastObjects[lastObjectIndex] = newObstacle;
-                determineObject.staticLine[lastObjectIndex] = determineObject.lastObjects[lastObjectIndex];
+                determineObject.staticLine[determineObject.staticLineIndex] = determineObject.lastObjects[lastObjectIndex];
                 destroyPlatform.newPassedPlatform[lastObjectIndex] = determineObject.objectHolder[lastObjectIndex];
+                determineObject.staticLineIndex += 1;
                 
                 coinClonerController.obstaclesPositionX= determineObject.lastObjects[lastObjectIndex].transform.position.x;
                 coinClonerController.obstaclesPositionZ= determineObject.lastObjects[lastObjectIndex].transform.position.z;

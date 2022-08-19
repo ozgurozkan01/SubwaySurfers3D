@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\CreateNewObstacles.cs" />
      <Compile Include="Assets\Scripts\CreateNewTraines.cs" />
      <Compile Include="Assets\Scripts\DestroyPlatform.cs" />
+     <Compile Include="Assets\Scripts\DestroyPowerUp.cs" />
      <Compile Include="Assets\Scripts\DetermineObstacleOrTrain.cs" />
      <Compile Include="Assets\Scripts\GameEndController.cs" />
      <Compile Include="Assets\Scripts\PlayerAnimationController.cs" />

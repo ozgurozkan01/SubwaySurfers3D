@@ -12,7 +12,7 @@ public class CoinClonerController : MonoBehaviour
     {
         for (int k = 0; k < 6; k++)
         {
-            GameObject newCoinClone = Instantiate(originalCoinPrefab, new Vector3(xPos, 1.55f, zPos - 2) , transform.rotation);
+            GameObject newCoinClone = Instantiate(originalCoinPrefab, new Vector3(xPos, 1.55f, zPos - 3) , transform.rotation);
             zPos -= 1;
         }
     }

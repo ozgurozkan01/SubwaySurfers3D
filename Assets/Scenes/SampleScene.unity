@@ -718,6 +718,8 @@ MonoBehaviour:
   powerUpDuration: 25
   coinMagnetActivate: 0
   doubleCoinActivate: 0
+  _doubleCoinSpawnController: 1
+  _coinMagnetSpawnController: 1
 --- !u!114 &559303010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,6 +819,8 @@ MonoBehaviour:
   scoreText: {fileID: 415846230}
   powerUpCont: {fileID: 559303009}
   _score: 0
+  magnetPlayer: {fileID: 7795809871233198625, guid: fb36c8b71798da4478e418d0724432f2,
+    type: 3}
 --- !u!114 &559303016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,6 +879,8 @@ MonoBehaviour:
   noPassLineAmount: 0
   staticLine: []
   staticLineAmount: 0
+  staticLineIndex: 0
+  staticLineAmountHolder: 0
   firstObsPositionsHolder: []
   destroyPlatform: {fileID: 559303012}
   obsPositionZ: 30

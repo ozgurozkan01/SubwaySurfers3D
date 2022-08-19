@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PowerUpController : MonoBehaviour
 {
@@ -17,8 +18,8 @@ public class PowerUpController : MonoBehaviour
     [HideInInspector] public bool doubleCoinActivate;
     private bool _isTimingForCoinMagnet;
     private bool _isTimingForDoubleCoin;
-    private bool _doubleCoinSpawnController = true;
-    private bool _coinMagnetSpawnController = true;
+    [HideInInspector] public bool _doubleCoinSpawnController = true;
+    [HideInInspector] public bool _coinMagnetSpawnController = true;
 
     private int _lineNumber;
     
@@ -36,7 +37,7 @@ public class PowerUpController : MonoBehaviour
     
     private void DetermineLineOfPowerUp()
     {
-        _lineNumber = Random.Range(0, determineObstacleOrTrain.staticLineAmount);
+        _lineNumber = Random.Range(0, determineObstacleOrTrain.staticLineAmountHolder);
     }
     
     private void OnCollisionEnter(Collision collision)
@@ -59,7 +60,6 @@ public class PowerUpController : MonoBehaviour
     private void DeterminePowerUpType()
     {
         _powerUpType = Random.Range(1, 3); // 1-> double coin, 2-> coin magnet
-        Debug.Log(_powerUpType);
     }
 
     private void CreateDoubleCoinPowerUp()
@@ -80,10 +80,10 @@ public class PowerUpController : MonoBehaviour
 
             if (_timerForCoinMagnet <= 0)
             {
-                _timerForCoinMagnet = 0;
                 coinMagnetActivate = false;
                 _isTimingForCoinMagnet = false;
                 _coinMagnetSpawnController = true;
+                _timerForCoinMagnet = 25;
             }
         }
         
@@ -94,10 +94,10 @@ public class PowerUpController : MonoBehaviour
 
             if (_timerForDoubleCoin <= 0)
             {
-                _timerForDoubleCoin = 0;
                 doubleCoinActivate = false;
                 _isTimingForDoubleCoin = false;
                 _doubleCoinSpawnController = true;
+                _timerForDoubleCoin = 25;
             }
         }
     }
@@ -110,6 +110,9 @@ public class PowerUpController : MonoBehaviour
         {
             CreateDoubleCoinPowerUp();
             _doubleCoinSpawnController = false;
+            
+            determineObstacleOrTrain.staticLineAmount = 0;
+            determineObstacleOrTrain.staticLineIndex = 0;
         }
         
         else if (_coinMagnetSpawnController && _powerUpType == 2)
@@ -117,5 +120,6 @@ public class PowerUpController : MonoBehaviour
             CreateCoinMagnetPowerUp(); 
             _coinMagnetSpawnController = false;
         }
+        
     }
 }
