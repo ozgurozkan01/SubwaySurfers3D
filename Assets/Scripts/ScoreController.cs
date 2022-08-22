@@ -7,6 +7,7 @@ public class ScoreController : MonoBehaviour
     [SerializeField] private PowerUpController powerUpCont;
     [HideInInspector] public int _score;
     [SerializeField] private CoinMovingMagnetPlayer magnetPlayer;
+    [SerializeField] private PlaneController planeController;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,11 +16,17 @@ public class ScoreController : MonoBehaviour
             magnetPlayer.isCoinMoving = false;
             Destroy(other.gameObject);
             IncreaseScore();
-        }
-        
-        if (other.gameObject.CompareTag("Coin") && _score % 50 == 0 && _score != 0)
-        {
-            powerUpCont.SpawnPowerUp();
+            
+                    
+            if (_score % 50 == 0 && _score != 0)
+            {
+                powerUpCont.SpawnPowerUp();
+            }
+            
+            else if (_score % 75 == 0 && _score != 0)
+            {
+                planeController.UpdatePlatformPosition();
+            }
         }
     }
     

@@ -5,7 +5,7 @@ public class CreateNewTraines : MonoBehaviour
     [SerializeField] private GameObject trainPrefabCanMove;
     [SerializeField] private GameObject trainPrefabNoMove;
     [SerializeField] private DetermineObstacleOrTrain determineObject;
-    [SerializeField] private DestroyPlatform destroyPlatform;
+    [SerializeField] private DestroyObstacle destroyPlatform;
 
     [HideInInspector] public int trainAmount;
     private int trainType; // 1-> canMove, 2-> noMove 

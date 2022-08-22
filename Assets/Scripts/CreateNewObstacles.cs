@@ -7,7 +7,7 @@ public class CreateNewObstacles : MonoBehaviour
     [SerializeField] private GameObject obstacleUnderPassPrefab;
     [SerializeField] private GameObject obstacleNoPassPrefab;
     public int obstacleType; // ( 0-> NoPass, 1-> UnderPass, 2-> OverPass)
-    [SerializeField] private DestroyPlatform destroyPlatform;
+    [SerializeField] private DestroyObstacle destroyPlatform;
     [SerializeField] private CoinClonerController coinClonerController;
     [SerializeField] private DetermineObstacleOrTrain determineObject;
     

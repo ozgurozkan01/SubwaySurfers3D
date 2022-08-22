@@ -61,10 +61,11 @@
      <Compile Include="Assets\Scripts\CopRotation.cs" />
      <Compile Include="Assets\Scripts\CreateNewObstacles.cs" />
      <Compile Include="Assets\Scripts\CreateNewTraines.cs" />
-     <Compile Include="Assets\Scripts\DestroyPlatform.cs" />
+     <Compile Include="Assets\Scripts\DestroyObstacle.cs" />
      <Compile Include="Assets\Scripts\DestroyPowerUp.cs" />
      <Compile Include="Assets\Scripts\DetermineObstacleOrTrain.cs" />
      <Compile Include="Assets\Scripts\GameEndController.cs" />
+     <Compile Include="Assets\Scripts\PlaneController.cs" />
      <Compile Include="Assets\Scripts\PlayerAnimationController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerRotation.cs" />

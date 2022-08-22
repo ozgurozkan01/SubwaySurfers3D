@@ -17,7 +17,7 @@ public class DetermineObstacleOrTrain : MonoBehaviour
     [HideInInspector] public int staticLineAmountHolder;
     [HideInInspector] public Vector3[] firstObsPositionsHolder;
 
-    [SerializeField] private DestroyPlatform destroyPlatform;
+    [SerializeField] private DestroyObstacle destroyPlatform;
     
     public float obsPositionZ = 40f;
     public float trainPositionZ = 50f;
